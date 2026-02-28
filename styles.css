@@ -1,676 +1,501 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 30px;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 h1 {
-    color: #333;
-    font-size: 28px;
-    font-weight: 600;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-primary {
-    background: #667eea;
-    color: white;
-}
+.btn-primary { background: #667eea; color: white; }
+.btn-primary:hover { background: #5568d3; }
 
-.btn-primary:hover {
-    background: #5568d3;
-}
+.btn-secondary { background: #6c757d; color: white; }
+.btn-secondary:hover { background: #5a6268; }
 
-.btn-secondary {
-    background: #6c757d;
-    color: white;
-}
+.btn-success { background: #28a745; color: white; }
+.btn-success:hover { background: #218838; }
 
-.btn-secondary:hover {
-    background: #5a6268;
-}
-
-.btn-success {
-    background: #28a745;
-    color: white;
-}
-
-.btn-success:hover {
-    background: #218838;
-}
-
-.btn-danger {
-    background: #dc3545;
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c82333;
-}
+.btn-danger { background: #dc3545; color: white; }
+.btn-danger:hover { background: #c82333; }
 
 .table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* 移动端平滑滚动 */
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
 }
 
 table {
-    width: 100%;
-    min-width: 100%; /* 确保桌面端占满容器 */
-    border-collapse: collapse;
-    background: white;
+  width: 100%;
+  min-width: 100%;
+  border-collapse: collapse;
+  background: white;
 }
 
 th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #dee2e6;
 }
 
 thead th {
-    background: #f8f9fa;
-    color: #495057;
-    font-weight: 600;
-    position: relative;
-    vertical-align: top;
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  position: relative;
+  vertical-align: top;
 }
 
 .col-index {
-    width: 80px;
-    background: #e9ecef;
-    font-weight: 600;
+  width: 80px;
+  background: #e9ecef;
+  font-weight: 600;
 }
 
-.col-name {
-    min-width: 120px;
-}
-
-.col-data {
-    min-width: 150px;
-}
+.col-name { min-width: 120px; }
+.col-data { min-width: 150px; }
 
 .col-operator {
-    width: 60px;
-    background: #e7f3ff;
-    font-weight: 600;
-    font-size: 18px;
-    color: #667eea;
+  width: 60px;
+  background: #e7f3ff;
+  font-weight: 600;
+  font-size: 18px;
+  color: #667eea;
 }
 
 .col-equals {
-    width: 40px;
-    background: #fff3cd;
-    font-weight: 600;
-    font-size: 18px;
-    color: #856404;
+  width: 40px;
+  background: #fff3cd;
+  font-weight: 600;
+  font-size: 18px;
+  color: #856404;
 }
 
 .col-total {
-    min-width: 120px;
-    background: #fff3cd;
-    font-weight: 600;
+  min-width: 120px;
+  background: #fff3cd;
+  font-weight: 600;
 }
 
 .header-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-align: center;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .operator-select {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    background: white;
-    cursor: pointer;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
 }
 
 input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    text-align: center;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
 }
 
-input[type="number"] {
-    text-align: right;
-}
+input[type="number"] { text-align: right; }
 
 input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
-.name-input {
-    text-align: left;
-}
+.name-input { text-align: left; }
 
 .total-cell {
-    background: #fff3cd;
-    font-weight: 600;
-    color: #856404;
+  background: #fff3cd;
+  font-weight: 600;
+  color: #856404;
 }
 
 tfoot {
-    background: #f8f9fa;
-    font-weight: 600;
+  background: #f8f9fa;
+  font-weight: 600;
 }
 
 .total-label {
-    text-align: right;
-    font-size: 16px;
-    color: #495057;
-    font-weight: 600;
+  text-align: right;
+  font-size: 16px;
+  color: #495057;
+  font-weight: 600;
 }
 
 .column-total {
-    background: #e7f3ff;
-    font-weight: 600;
-    color: #667eea;
-    text-align: right;
-    padding: 12px;
+  background: #e7f3ff;
+  font-weight: 600;
+  color: #667eea;
+  text-align: right;
+  padding: 12px;
 }
 
 .grand-total {
-    font-size: 18px;
-    color: #dc3545;
-    font-weight: 700;
+  font-size: 18px;
+  color: #dc3545;
+  font-weight: 700;
 }
 
 .controls {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 footer {
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* 竖屏提示 */
+@media (max-width: 768px) and (orientation: portrait) {
+  body::before {
+    content: '建议横屏使用以获得更佳体验 ↻';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ff9800;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  body { padding-top: 40px; }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  body { padding: 10px; }
+
+  .container {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .table-container {
+    margin-bottom: 15px;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  table {
+    width: auto;
+    min-width: 100%;
+    font-size: 11px;
+    table-layout: auto;
+  }
+
+  th, td { padding: 6px 4px; }
+
+  /* 仅固定左侧两列：更稳定 */
+  .col-index {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    background: #e9ecef;
+    width: 35px;
+    min-width: 35px;
+    padding: 6px 2px;
+    font-size: 11px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
+
+  .col-name {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 35px;
+    z-index: 3;
+    background: #f8f9fa;
+    min-width: 70px;
+    padding: 6px 4px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
+
+  thead th.col-index,
+  thead th.col-name {
+    background: #f8f9fa;
+    z-index: 4;
+  }
+
+  .col-data { min-width: 90px; }
+
+  .col-operator {
+    width: 35px;
+    min-width: 35px;
+    padding: 6px 2px;
+    font-size: 14px;
+  }
+
+  .col-equals {
+    width: 30px;
+    min-width: 30px;
+    padding: 6px 2px;
+    font-size: 14px;
+  }
+
+  /* 取消右侧sticky：避免移动端横向滚动错位 */
+  .col-total,
+  .total-cell,
+  .grand-total {
+    position: static;
+    right: auto;
+    box-shadow: none;
+  }
+
+  .header-input {
+    padding: 4px;
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .operator-select { padding: 3px; font-size: 11px; }
+
+  input[type="text"], input[type="number"] {
+    padding: 5px 3px;
+    font-size: 11px;
+  }
+
+  .name-input { font-size: 11px; }
+
+  .delete-col-btn {
+    padding: 2px 5px;
+    font-size: 10px;
+    margin-top: 3px;
+  }
+
+  tfoot td {
+    font-size: 11px;
+    padding: 6px 4px;
+  }
+
+  /* total-label 不做sticky（总计行结构是动态的，写死偏移会错） */
+  .total-label { font-size: 11px; }
+
+  .column-total { font-size: 11px; padding: 6px 4px; }
+  .grand-total { font-size: 14px; }
+  .total-cell { font-size: 11px; }
+
+  .controls { gap: 10px; margin-bottom: 15px; }
+  .controls .btn { font-size: 13px; padding: 10px 15px; }
+
+  footer { font-size: 12px; margin-top: 15px; padding-top: 15px; }
+
+  .table-container::after {
+    content: '← 左右滑动查看更多 →';
+    display: block;
     text-align: center;
     color: #6c757d;
-    font-size: 14px;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+    font-size: 11px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+  }
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 10px;
-        border-radius: 8px;
-    }
-
-    header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-    }
-
-    h1 {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    /* 表格容器优化 */
-    .table-container {
-        margin-bottom: 15px;
-        border-radius: 6px;
-        position: relative;
-    }
-
-    /* 表格整体优化 - 移除width限制，让内容决定宽度 */
-    table {
-        width: auto;
-        min-width: 100%;
-        font-size: 11px;
-        display: table;
-        table-layout: auto;
-    }
-
-    th, td {
-        padding: 6px 4px;
-    }
-
-    /* 固定左侧序号和姓名列 */
-    .col-index {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 0;
-        z-index: 3;
-        background: #e9ecef;
-        width: 35px;
-        min-width: 35px;
-        padding: 6px 2px;
-        font-size: 11px;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    .col-name {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 35px;
-        z-index: 3;
-        background: #f8f9fa;
-        min-width: 70px;
-        padding: 6px 4px;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    thead th.col-index,
-    thead th.col-name {
-        background: #f8f9fa;
-        z-index: 4;
-    }
-
-    tfoot td.col-index,
-    tfoot td.col-name {
-        background: #f8f9fa;
-        z-index: 3;
-    }
-
-    /* 数据列优化 */
-    .col-data {
-        min-width: 90px;
-    }
-
-    .col-operator {
-        width: 35px;
-        min-width: 35px;
-        padding: 6px 2px;
-        font-size: 14px;
-    }
-
-    .col-equals {
-        width: 30px;
-        min-width: 30px;
-        padding: 6px 2px;
-        font-size: 14px;
-    }
-
-    .col-total,
-    .total-cell {
-        min-width: 80px;
-        position: -webkit-sticky;
-        position: sticky;
-        right: 0;
-        z-index: 3;
-        background: #fff3cd;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    thead th.col-total {
-        z-index: 4;
-    }
-
-    /* 输入框优化 */
-    .header-input {
-        padding: 4px;
-        font-size: 11px;
-        margin-bottom: 3px;
-    }
-
-    .operator-select {
-        padding: 3px;
-        font-size: 11px;
-    }
-
-    input[type="text"], input[type="number"] {
-        padding: 5px 3px;
-        font-size: 11px;
-    }
-
-    .name-input {
-        font-size: 11px;
-    }
-
-    /* 删除按钮 */
-    .delete-col-btn {
-        padding: 2px 5px;
-        font-size: 10px;
-        margin-top: 3px;
-    }
-
-    /* 总计行优化 */
-    tfoot td {
-        font-size: 11px;
-        padding: 6px 4px;
-    }
-
-    .total-label {
-        font-size: 11px;
-        position: -webkit-sticky;
-        position: sticky;
-        background: #f8f9fa;
-        z-index: 3;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    .total-label:first-child {
-        left: 0;
-    }
-
-    .total-label:nth-child(2) {
-        left: 35px;
-    }
-
-    .column-total {
-        font-size: 11px;
-        padding: 6px 4px;
-    }
-
-    .grand-total {
-        font-size: 14px;
-        position: -webkit-sticky;
-        position: sticky;
-        right: 0;
-        z-index: 3;
-        background: #fff3cd;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    .total-cell {
-        font-size: 11px;
-    }
-
-    /* 控制按钮 */
-    .controls {
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-
-    .controls .btn {
-        font-size: 13px;
-        padding: 10px 15px;
-    }
-
-    /* 页脚 */
-    footer {
-        font-size: 12px;
-        margin-top: 15px;
-        padding-top: 15px;
-    }
-
-    /* 添加横向滚动提示 */
-    .table-container::after {
-        content: '← 左右滑动查看更多 →';
-        display: block;
-        text-align: center;
-        color: #6c757d;
-        font-size: 11px;
-        padding: 8px;
-        background: #f8f9fa;
-        border-top: 1px solid #dee2e6;
-    }
-}
-
-/* 超小屏幕优化 */
+/* 超小屏 */
 @media (max-width: 480px) {
-    .container {
-        padding: 8px;
-    }
+  .container { padding: 8px; }
+  h1 { font-size: 16px; }
 
-    h1 {
-        font-size: 16px;
-    }
+  .actions { grid-template-columns: 1fr; gap: 6px; }
 
-    .actions {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
+  .btn { padding: 8px 10px; font-size: 11px; }
 
-    .btn {
-        padding: 8px 10px;
-        font-size: 11px;
-    }
+  table {
+    width: auto;
+    min-width: 100%;
+    font-size: 10px;
+    table-layout: auto;
+  }
 
-    table {
-        width: auto;
-        min-width: 100%;
-        font-size: 10px;
-        display: table;
-        table-layout: auto;
-    }
+  th, td { padding: 4px 2px; }
 
-    th, td {
-        padding: 4px 2px;
-    }
+  .col-index {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    width: 30px;
+    min-width: 30px;
+    font-size: 10px;
+    background: #e9ecef;
+    z-index: 3;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
 
-    .col-index {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 0;
-        width: 30px;
-        min-width: 30px;
-        font-size: 10px;
-        background: #e9ecef;
-        z-index: 3;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
+  .col-name {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 30px;
+    min-width: 60px;
+    background: #f8f9fa;
+    z-index: 3;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
 
-    .col-name {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 30px;
-        min-width: 60px;
-        background: #f8f9fa;
-        z-index: 3;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
+  thead th.col-index,
+  thead th.col-name { background: #f8f9fa; z-index: 4; }
 
-    thead th.col-index,
-    thead th.col-name {
-        background: #f8f9fa;
-        z-index: 4;
-    }
+  .col-data { min-width: 75px; }
 
-    tfoot td.col-index,
-    tfoot td.col-name {
-        background: #f8f9fa;
-        z-index: 3;
-    }
+  .col-operator { width: 30px; min-width: 30px; font-size: 12px; }
+  .col-equals { width: 25px; min-width: 25px; font-size: 12px; }
 
-    .col-data {
-        min-width: 75px;
-    }
+  .col-total,
+  .total-cell,
+  .grand-total {
+    position: static;
+    right: auto;
+    box-shadow: none;
+  }
 
-    .col-operator {
-        width: 30px;
-        min-width: 30px;
-        font-size: 12px;
-    }
+  .header-input { padding: 3px; font-size: 10px; }
+  .operator-select { padding: 2px; font-size: 10px; }
+  input[type="text"], input[type="number"] { padding: 4px 2px; font-size: 10px; }
 
-    .col-equals {
-        width: 25px;
-        min-width: 25px;
-        font-size: 12px;
-    }
+  .delete-col-btn { padding: 2px 4px; font-size: 9px; }
 
-    .col-total,
-    .total-cell {
-        min-width: 70px;
-        position: -webkit-sticky;
-        position: sticky;
-        right: 0;
-        z-index: 3;
-        background: #fff3cd;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-    }
+  .total-label { font-size: 10px; }
+  .column-total { font-size: 10px; }
+  .grand-total { font-size: 12px; }
 
-    thead th.col-total {
-        z-index: 4;
-    }
+  .controls .btn { font-size: 12px; padding: 8px 12px; }
+  footer { font-size: 11px; }
 
-    .header-input {
-        padding: 3px;
-        font-size: 10px;
-    }
-
-    .operator-select {
-        padding: 2px;
-        font-size: 10px;
-    }
-
-    input[type="text"], input[type="number"] {
-        padding: 4px 2px;
-        font-size: 10px;
-    }
-
-    .delete-col-btn {
-        padding: 2px 4px;
-        font-size: 9px;
-    }
-
-    .total-label {
-        font-size: 10px;
-        position: -webkit-sticky;
-        position: sticky;
-        background: #f8f9fa;
-        z-index: 3;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    .total-label:first-child {
-        left: 0;
-    }
-
-    .total-label:nth-child(2) {
-        left: 30px;
-    }
-
-    .column-total {
-        font-size: 10px;
-    }
-
-    .grand-total {
-        font-size: 12px;
-        position: -webkit-sticky;
-        position: sticky;
-        right: 0;
-        z-index: 3;
-        background: #fff3cd;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-    }
-
-    .controls .btn {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    footer {
-        font-size: 11px;
-    }
-
-    .table-container::after {
-        font-size: 10px;
-        padding: 6px;
-    }
+  .table-container::after { font-size: 10px; padding: 6px; }
 }
 
 /* 删除按钮样式 */
 .delete-col-btn {
-    margin-top: 5px;
-    padding: 4px 8px;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
+  margin-top: 5px;
+  padding: 4px 8px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
-.delete-col-btn:hover {
-    background: #c82333;
-}
+.delete-col-btn:hover { background: #c82333; }
 
 .delete-row-btn {
-    padding: 4px 8px;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
+  padding: 4px 8px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
-.delete-row-btn:hover {
-    background: #c82333;
-}
+.delete-row-btn:hover { background: #c82333; }
 
 /* 加载动画 */
 .loading {
-    opacity: 0.6;
-    pointer-events: none;
+  opacity: 0.6;
+  pointer-events: none;
 }
