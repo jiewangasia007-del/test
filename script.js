@@ -10,14 +10,13 @@ function numberToChinese(num) {
 
 document.addEventListener('DOMContentLoaded', function () {
   loadFromLocalStorage();
-  // 以DOM真实结构为准
   dataColumns = document.querySelectorAll('#headerRow .col-data').length || 1;
 
   attachEventListeners();
   calculateAll();
 });
 
-// 添加行（修正：按表头顺序生成，不重复追加总计列）
+// 添加行：按表头顺序生成
 function addRow() {
   const tbody = document.getElementById('tableBody');
   const headerRow = document.getElementById('headerRow');
@@ -28,12 +27,9 @@ function addRow() {
   row.setAttribute('data-row-index', newRowIndex);
 
   let rowHTML = '';
-
-  // 先放序号/姓名
   rowHTML += `<td class="col-index">${newRowIndex + 1}</td>`;
   rowHTML += `<td><input type="text" class="name-input" placeholder="姓名"></td>`;
 
-  // 再按表头生成：数据列/运算符/等号/总计
   headerCells.forEach(th => {
     if (th.classList.contains('col-data')) {
       rowHTML += `<td><input type="number" class="data-input" placeholder="0.00" step="0.01"></td>`;
@@ -63,7 +59,7 @@ function addRow() {
   saveToLocalStorage();
 }
 
-// 添加列（基于等号列作为插入锚点）
+// 添加列
 function addColumn() {
   const headerRow = document.getElementById('headerRow');
   const tbody = document.getElementById('tableBody');
@@ -75,7 +71,7 @@ function addColumn() {
     return;
   }
 
-  // 若原本只有1列数据：先在“等号列”前插入一个运算符列
+  // 只有1列 -> 先补一个运算符列（在等号前）
   if (dataColumns === 1) {
     const operatorHeader = document.createElement('th');
     operatorHeader.className = 'col-operator';
@@ -103,7 +99,6 @@ function addColumn() {
       row.insertBefore(operatorCell, eqCell);
     });
 
-    // totalRow：在等号前插入运算符
     const totalEqCell = totalRow.querySelector('.col-equals');
     const totalOpCell = document.createElement('td');
     totalOpCell.className = 'col-operator';
@@ -118,7 +113,7 @@ function addColumn() {
     }
   }
 
-  // 若已有>=2列数据：新列前也需要插一个运算符列
+  // 已有>=2列 -> 新列前也插入一个运算符列
   if (dataColumns > 1) {
     const newOperatorHeader = document.createElement('th');
     newOperatorHeader.className = 'col-operator';
@@ -139,18 +134,16 @@ function addColumn() {
     });
   }
 
-  // 插入新的数据列表头（在等号列前）
   const newDataHeader = document.createElement('th');
   newDataHeader.className = 'col-data';
   newDataHeader.innerHTML = `
     <input type="text" class="header-input" placeholder="列标题" value="标题${numberToChinese(dataColumns + 1)}">
-    <button class="delete-col-btn" onclick="deleteColumn(this)">删除</button>
+    <button class="delete-col-btn">删除</button>
   `;
   headerRow.insertBefore(newDataHeader, equalsHeader);
 
   newDataHeader.querySelector('.header-input').addEventListener('input', saveToLocalStorage);
 
-  // 为每一行在等号前插入： (可能的运算符) + 数据单元格
   Array.from(tbody.children).forEach(row => {
     const eqCell = row.querySelector('.col-equals');
 
@@ -172,7 +165,6 @@ function addColumn() {
     });
   });
 
-  // totalRow：在等号前插入 (可能的运算符) + 列合计
   const totalEqCell = totalRow.querySelector('.col-equals');
 
   if (dataColumns > 1) {
@@ -207,22 +199,21 @@ function deleteColumn(btn) {
   const th = btn.parentElement;
   const colIndex = Array.from(headerRow.children).indexOf(th);
 
-  // 删除数据列表头
   th.remove();
 
-  // 删除它“后面紧跟着”的运算符列表头（若存在）
+  // 删除它后面紧跟的运算符表头（若存在）
   const nextTh = headerRow.children[colIndex];
   if (nextTh && nextTh.classList.contains('col-operator')) nextTh.remove();
 
-  // 删除每一行对应的数据单元格 + 可能的运算符单元格
+  // 删除每行对应单元格
   Array.from(tbody.children).forEach(row => {
-    if (row.children[colIndex]) row.children[colIndex].remove(); // 数据
+    if (row.children[colIndex]) row.children[colIndex].remove();
     if (row.children[colIndex] && row.children[colIndex].classList.contains('col-operator')) {
       row.children[colIndex].remove();
     }
   });
 
-  // 删除 totalRow 对应的列合计 + 可能的运算符
+  // 删除总计行对应
   if (totalRow.children[colIndex]) totalRow.children[colIndex].remove();
   if (totalRow.children[colIndex] && totalRow.children[colIndex].classList.contains('col-operator')) {
     totalRow.children[colIndex].remove();
@@ -230,13 +221,12 @@ function deleteColumn(btn) {
 
   dataColumns--;
 
-  // 若只剩一列：移除所有运算符列
+  // 剩1列：移除所有运算符列
   if (dataColumns === 1) {
     headerRow.querySelectorAll('.col-operator').forEach(x => x.remove());
     Array.from(tbody.children).forEach(row => row.querySelectorAll('.col-operator').forEach(x => x.remove()));
     totalRow.querySelectorAll('.col-operator').forEach(x => x.remove());
 
-    // 隐藏第一列删除按钮
     const firstDataHeader = headerRow.querySelector('.col-data');
     if (firstDataHeader) {
       const deleteBtn = firstDataHeader.querySelector('.delete-col-btn');
@@ -277,7 +267,6 @@ function getOperatorSymbol(value) {
   return symbols[value] || '+';
 }
 
-// 计算单行总计
 function calculateRow(row) {
   const dataInputs = row.querySelectorAll('.data-input');
   const totalCell = row.querySelector('.total-cell');
@@ -321,7 +310,6 @@ function evaluateExpression(expr) {
   return Function('"use strict"; return (' + expr + ')')();
 }
 
-// 计算总计金额和各列合计
 function calculateGrandTotal() {
   const tbody = document.getElementById('tableBody');
   const totalRow = document.getElementById('totalRow');
@@ -345,8 +333,7 @@ function calculateGrandTotal() {
     });
   }
 
-  const columnTotalCells = totalRow.querySelectorAll('.column-total');
-  columnTotalCells.forEach((cell, index) => {
+  totalRow.querySelectorAll('.column-total').forEach((cell, index) => {
     if (columnTotals[index] !== undefined) cell.textContent = columnTotals[index].toFixed(2);
   });
 
@@ -367,7 +354,6 @@ function updateRowNumbers() {
   });
 }
 
-// 保存到LocalStorage
 function saveToLocalStorage() {
   const data = { columns: [], rows: [] };
 
@@ -394,7 +380,6 @@ function saveToLocalStorage() {
   localStorage.setItem('settlementData', JSON.stringify(data));
 }
 
-// 从LocalStorage加载（重建表头、tbody、tfoot）
 function loadFromLocalStorage() {
   const savedData = localStorage.getItem('settlementData');
   if (!savedData) return;
@@ -405,15 +390,11 @@ function loadFromLocalStorage() {
     const headerRow = document.getElementById('headerRow');
     const tbody = document.getElementById('tableBody');
 
-    // 清空tbody
     tbody.innerHTML = '';
 
-    // 清空表头：保留序号/姓名/总计，移除中间动态列（data/operator/equals）
     headerRow.querySelectorAll('.col-data, .col-operator, .col-equals').forEach(x => x.remove());
-
     const totalHeader = headerRow.querySelector('.col-total');
 
-    // 重建：data / operator / equals
     dataColumns = data.columns.length || 1;
 
     data.columns.forEach((col, index) => {
@@ -423,13 +404,12 @@ function loadFromLocalStorage() {
       const showDeleteBtn = dataColumns > 1 ? '' : 'style="display:none;"';
       newDataHeader.innerHTML = `
         <input type="text" class="header-input" placeholder="列标题" value="${escapeHtml(col.title || '')}">
-        <button class="delete-col-btn" onclick="deleteColumn(this)" ${showDeleteBtn}>删除</button>
+        <button class="delete-col-btn" ${showDeleteBtn}>删除</button>
       `;
       headerRow.insertBefore(newDataHeader, totalHeader);
 
       newDataHeader.querySelector('.header-input').addEventListener('input', saveToLocalStorage);
 
-      // 非最后一列：插入运算符列
       if (index < data.columns.length - 1) {
         const op = col.operator || '+';
         const newOperatorHeader = document.createElement('th');
@@ -452,13 +432,11 @@ function loadFromLocalStorage() {
       }
     });
 
-    // 最后插入 equals 列
     const equalsHeader = document.createElement('th');
     equalsHeader.className = 'col-equals';
     equalsHeader.textContent = '=';
     headerRow.insertBefore(equalsHeader, totalHeader);
 
-    // 重建tbody
     data.rows.forEach((rowData, rowIndex) => {
       const row = document.createElement('tr');
       row.setAttribute('data-row-index', rowIndex);
@@ -489,9 +467,7 @@ function loadFromLocalStorage() {
       });
     });
 
-    // 重建tfoot
     rebuildTotalRow(data);
-
     calculateAll();
   } catch (e) {
     console.error('加载数据失败:', e);
@@ -531,10 +507,72 @@ function rebuildTotalRow(data) {
   totalRow.appendChild(grandTotalCell);
 }
 
+// 清空数据：不依赖 reload，移动端更稳定
 function clearAllData() {
-  if (!confirm('确定要清空所有数据吗？此操作不可恢复！')) return;
-  localStorage.removeItem('settlementData');
-  location.reload();
+  const ok = window.confirm('确定要清空所有数据吗？此操作不可恢复！');
+  if (!ok) return;
+
+  try {
+    localStorage.removeItem('settlementData');
+  } catch (e) {
+    console.error(e);
+  }
+
+  dataColumns = 1;
+
+  // 重建表头
+  const headerRow = document.getElementById('headerRow');
+  headerRow.querySelectorAll('.col-data, .col-operator, .col-equals').forEach(x => x.remove());
+  const totalHeader = headerRow.querySelector('.col-total');
+
+  const dataTh = document.createElement('th');
+  dataTh.className = 'col-data';
+  dataTh.innerHTML = `
+    <input type="text" class="header-input" placeholder="列标题" value="标题一">
+    <button class="delete-col-btn" style="display:none;">删除</button>
+  `;
+  headerRow.insertBefore(dataTh, totalHeader);
+  dataTh.querySelector('.header-input').addEventListener('input', saveToLocalStorage);
+
+  const eqTh = document.createElement('th');
+  eqTh.className = 'col-equals';
+  eqTh.textContent = '=';
+  headerRow.insertBefore(eqTh, totalHeader);
+
+  // 重建tbody
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = `
+    <tr data-row-index="0">
+      <td class="col-index">1</td>
+      <td><input type="text" class="name-input" placeholder="姓名"></td>
+      <td><input type="number" class="data-input" placeholder="0.00" step="0.01"></td>
+      <td class="col-equals">=</td>
+      <td class="total-cell">0.00</td>
+    </tr>
+  `;
+
+  // 绑定初始行事件
+  Array.from(tbody.children).forEach(row => {
+    row.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', function () {
+        calculateRow(row);
+        calculateGrandTotal();
+        saveToLocalStorage();
+      });
+    });
+  });
+
+  // 重建tfoot
+  const totalRow = document.getElementById('totalRow');
+  totalRow.innerHTML = `
+    <td class="total-label">总计</td>
+    <td class="total-label">金额</td>
+    <td class="column-total">0.00</td>
+    <td class="col-equals">=</td>
+    <td id="grandTotal" class="grand-total">0.00</td>
+  `;
+
+  calculateAll();
 }
 
 // 导出Excel
@@ -566,8 +604,7 @@ function exportToExcel() {
     rowData.push(row.querySelector('.col-index').textContent);
     rowData.push(row.querySelector('.name-input').value);
 
-    const cells = Array.from(row.children);
-    cells.forEach(cell => {
+    Array.from(row.children).forEach(cell => {
       if (cell.querySelector('.data-input')) {
         rowData.push(parseFloat(cell.querySelector('.data-input').value) || 0);
       } else if (cell.classList.contains('col-operator')) {
@@ -689,7 +726,7 @@ function attachEventListeners() {
   document.getElementById('exportExcelBtn').addEventListener('click', exportToExcel);
   document.getElementById('exportPdfBtn').addEventListener('click', exportToPDF);
 
-  // 表头
+  // 表头输入
   const headerRow = document.getElementById('headerRow');
   headerRow.querySelectorAll('.header-input').forEach(input => input.addEventListener('input', saveToLocalStorage));
   headerRow.querySelectorAll('.operator-select').forEach(select => {
@@ -700,7 +737,14 @@ function attachEventListeners() {
     });
   });
 
-  // 初始行
+  // 删除列：事件委托（替代 inline onclick，移动端更稳定）
+  headerRow.addEventListener('click', function (e) {
+    const btn = e.target.closest('.delete-col-btn');
+    if (!btn) return;
+    deleteColumn(btn);
+  });
+
+  // 初始行输入
   const tbody = document.getElementById('tableBody');
   Array.from(tbody.children).forEach(row => {
     row.querySelectorAll('input').forEach(input => {
@@ -713,7 +757,6 @@ function attachEventListeners() {
   });
 }
 
-// 防止 XSS/破坏HTML（用于localStorage回填）
 function escapeHtml(str) {
   return String(str)
     .replaceAll('&', '&amp;')
