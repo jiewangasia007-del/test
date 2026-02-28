@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+thead th {
+    background: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    position: relative;
+    vertical-align: top;
+}
+
+.col-index {
+    width: 80px;
+    background: #e9ecef;
+    font-weight: 600;
+}
+
+.col-name {
+    min-width: 120px;
+}
+
+.col-data {
+    min-width: 150px;
+}
+
+.col-operator {
+    width: 60px;
+    background: #e7f3ff;
+    font-weight: 600;
+    font-size: 18px;
+    color: #667eea;
+}
+
+.col-equals {
+    width: 40px;
+    background: #fff3cd;
+    font-weight: 600;
+    font-size: 18px;
+    color: #856404;
+}
+
+.col-total {
+    min-width: 120px;
+    background: #fff3cd;
+    font-weight: 600;
+}
+
+.header-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.operator-select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+input[type="number"] {
+    text-align: right;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.name-input {
+    text-align: left;
+}
+
+.total-cell {
+    background: #fff3cd;
+    font-weight: 600;
+    color: #856404;
+}
+
+tfoot {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.total-label {
+    text-align: right;
+    font-size: 16px;
+    color: #495057;
+    font-weight: 600;
+}
+
+.column-total {
+    background: #e7f3ff;
+    font-weight: 600;
+    color: #667eea;
+    text-align: right;
+    padding: 12px;
+}
+
+.grand-total {
+    font-size: 18px;
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    color: #6c757d;
+    font-size: 14px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* 删除按钮样式 */
+.delete-col-btn {
+    margin-top: 5px;
+    padding: 4px 8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-col-btn:hover {
+    background: #c82333;
+}
+
+.delete-row-btn {
+    padding: 4px 8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-row-btn:hover {
+    background: #c82333;
+}
+
+/* 加载动画 */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
