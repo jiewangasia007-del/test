@@ -290,7 +290,7 @@ footer {
 
   th, td { padding: 6px 4px; }
 
-  /* 仅固定左侧两列：更稳定 */
+  /* 仅固定左侧“序号列”：方案A，最稳定 */
   .col-index {
     position: -webkit-sticky;
     position: sticky;
@@ -304,19 +304,19 @@ footer {
     box-shadow: 2px 0 5px rgba(0,0,0,0.05);
   }
 
+  /* 取消姓名列sticky，避免背景色块悬浮 */
   .col-name {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 35px;
-    z-index: 3;
-    background: #f8f9fa;
+    position: static;
+    left: auto;
+    z-index: auto;
+    box-shadow: none;
+    background: transparent;
     min-width: 70px;
     padding: 6px 4px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
   }
 
-  thead th.col-index,
-  thead th.col-name {
+  /* 只提升序号表头层级即可 */
+  thead th.col-index {
     background: #f8f9fa;
     z-index: 4;
   }
@@ -372,7 +372,7 @@ footer {
     padding: 6px 4px;
   }
 
-  /* total-label 不做sticky（总计行结构是动态的，写死偏移会错） */
+  /* total-label 不做sticky（总计行结构是动态的） */
   .total-label { font-size: 11px; }
 
   .column-total { font-size: 11px; padding: 6px 4px; }
@@ -414,6 +414,7 @@ footer {
 
   th, td { padding: 4px 2px; }
 
+  /* 固定序号列 */
   .col-index {
     position: -webkit-sticky;
     position: sticky;
@@ -426,18 +427,17 @@ footer {
     box-shadow: 2px 0 5px rgba(0,0,0,0.05);
   }
 
+  /* 取消姓名列sticky */
   .col-name {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 30px;
+    position: static;
+    left: auto;
+    z-index: auto;
+    box-shadow: none;
+    background: transparent;
     min-width: 60px;
-    background: #f8f9fa;
-    z-index: 3;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
   }
 
-  thead th.col-index,
-  thead th.col-name { background: #f8f9fa; z-index: 4; }
+  thead th.col-index { background: #f8f9fa; z-index: 4; }
 
   .col-data { min-width: 75px; }
 
