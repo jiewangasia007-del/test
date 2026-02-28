@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>工程费结算计算器</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- 防缓存：改了代码就改 v= 后面的数字 -->
+  <link rel="stylesheet" href="styles.css?v=20260228_1">
 </head>
 
 <body>
@@ -28,10 +30,10 @@
             <!-- 第1个数据列 -->
             <th class="col-data">
               <input type="text" class="header-input" placeholder="列标题" value="标题一" />
-              <button class="delete-col-btn" onclick="deleteColumn(this)" style="display:none;">删除</button>
+              <button class="delete-col-btn" style="display:none;">删除</button>
             </th>
 
-            <!-- 等号列：作为插入锚点，必须始终存在 -->
+            <!-- 等号列：插入锚点，必须存在 -->
             <th class="col-equals">=</th>
 
             <th class="col-total">总计</th>
@@ -74,6 +76,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- 防缓存：改了代码就改 v= 后面的数字 -->
+  <script src="script.js?v=20260228_1"></script>
 </body>
 </html>
